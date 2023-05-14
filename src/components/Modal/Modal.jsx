@@ -1,9 +1,9 @@
 import { useEffect} from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { togleModal } from 'redux/actions';
-import { Backdrop, ModalContent } from './Modal.styled';
 import { EmergencyContent } from 'components/EmergencyContent';
+import { togleModal } from 'redux/contactSlice';
+import { Backdrop, ModalContent } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 

@@ -1,16 +1,11 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from '../../redux/contactSlice';
 import { Form, InputStyled, Button } from './ContactForm.styled';
-import { useEffect } from 'react';
 
 export const ContactForm = () => {
   const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const handleSubmit = e => {
     e.preventDefault();

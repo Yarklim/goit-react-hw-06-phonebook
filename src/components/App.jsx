@@ -4,8 +4,8 @@ import { ContactList } from './ContactList';
 import { EmergencyBtn } from './EmergencyBtn';
 import { Modal } from './Modal';
 import { useSelector, useDispatch } from 'react-redux';
+import { togleModal } from 'redux/contactSlice';
 import { Container } from './App.styled';
-import { togleModal } from 'redux/actions';
 
 export const App = () => {
 	const showModal = useSelector(state => state.modal);
