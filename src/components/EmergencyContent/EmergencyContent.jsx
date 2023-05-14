@@ -20,7 +20,7 @@ import avangers from '../images/avangers.jpg';
 export const EmergencyContent = ({onClose}) => {
   return (
     <Container>
-      <Title>When you have problems with your homework, call them!</Title>
+      <Title>Call them if you have problems with your homework!</Title>
       <ContentList>
         <ListItem>
           <Img src={elon} alt="avatar" width={70} />
@@ -64,5 +64,5 @@ export const EmergencyContent = ({onClose}) => {
 };
 
 EmergencyContent.propTypes = {
-	onClose: PropTypes.func.isRequired,
+	onClose: PropTypes.func,
 }

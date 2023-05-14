@@ -1,10 +1,36 @@
-import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/actions';
 import { Form, InputStyled, Button } from './ContactForm.styled';
+import { useEffect } from 'react';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
+  const contacts = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const id = nanoid();
+    const name = e.target.elements.name.value;
+    const number = e.target.elements.number.value;
+    const item = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    if (item) {
+      alert(`${name} is alredy in contacts`);
+    } else {
+      dispatch(addContact({ id, name, number }));
+    }
+    e.target.reset();
+  };
+
   return (
-    <Form onSubmit={onSubmit}>
-       <h3>Name</h3>
+    <Form onSubmit={handleSubmit}>
+      <h3>Name</h3>
       <InputStyled
         type="text"
         name="name"
@@ -22,13 +48,11 @@ export const ContactForm = ({ onSubmit }) => {
         placeholder="Enter number"
         required
       />
-      <Button type="submit" onSubmit={onSubmit}>
+      <Button type="submit" >
         Add contact
       </Button>
     </Form>
   );
 };
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+

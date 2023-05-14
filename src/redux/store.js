@@ -4,4 +4,10 @@ import { rootReducer } from './reducer';
 
 const enhancer = devToolsEnhancer();
 
-export const store = createStore(rootReducer, enhancer);
+export const initialState = {
+  contacts: JSON.parse(localStorage.getItem('contacts')) ?? [],
+  filter: '',
+  modal: false,
+};
+
+export const store = createStore(rootReducer, initialState, enhancer);
